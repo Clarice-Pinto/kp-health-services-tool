@@ -1,3 +1,22 @@
-This tool is provided for orientation and planning purposes.
-Content is based on publicly available WHO normative guidance.
-All WHO publications remain the intellectual property of the World Health Organization.
+LICENCE NOT YET SET
+===================
+
+This file is a placeholder. The licence that applies to this tool as a derived
+work has not been decided and must be set by the responsible technical unit
+before the site is published.
+
+Points to settle:
+
+1. The substantive content is drawn from WHO publications, which are generally
+   released under CC BY-NC-SA 3.0 IGO. That licence carries a share-alike
+   obligation which would normally propagate to this tool.
+
+2. The embedded checklist (assets/downloads/) and the publication cover images
+   reproduced in the WHO Publications tab carry WHO branding. Confirm with
+   whoever handles institutional identity that their reproduction here, and in
+   any country adaptation, is acceptable.
+
+3. If countries are expected to adapt the tool, the licence should say so
+   explicitly, and state what attribution an adapted version must carry.
+
+Replace the whole of this file with the chosen licence text.

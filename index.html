@@ -269,6 +269,9 @@ body { padding: 0; max-width: none; background: #F4F7FA; }
    small arrow on that side; the arrow disappears once the edge is
    reached, so it always tells the truth about what is left to see.
    --------------------------------------------------------------- */
+.kp-tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.kp-tablewrap > table { min-width: 560px; }
+@media (max-width: 640px) { .kp-tablewrap > table { min-width: 500px; } }
 .kp-scroll { position: relative; }
 .kp-arrow {
   position: absolute; top: 50%; transform: translateY(-50%);
@@ -391,7 +394,6 @@ details[open] > summary { flex-direction: row !important; flex-wrap: nowrap !imp
 
 /* wide tables scroll sideways on a phone instead of squashing or overflowing */
 @media (max-width: 640px) {
-  #panel table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   #panel table th, #panel table td { white-space: normal; overflow-wrap: break-word; }
   #panel table th:first-child, #panel table td:first-child { min-width: 130px; }
   .kp-casc .cgrid { grid-template-columns: 1fr !important; }
@@ -1535,8 +1537,22 @@ function kpArrowsFor(box) {
   setTimeout(update, 60);
 }
 
+function kpWrapTable(t) {
+  // A tabela em si nao rola: e envolvida num contentor que rola. Assim funciona
+  // em qualquer largura, e nao apenas no telemovel.
+  var w = t.parentNode;
+  if (w && w.classList && w.classList.contains('kp-tablewrap')) { return w; }
+  w = document.createElement('div');
+  w.className = 'kp-tablewrap';
+  t.parentNode.insertBefore(w, t);
+  w.appendChild(t);
+  return w;
+}
+
 function kpScrollHints() {
-  var sel = ['#panel table', '.kp-scroll-x', '.tabrail'];
+  var tables = document.querySelectorAll('table');
+  for (var t = 0; t < tables.length; t++) { kpArrowsFor(kpWrapTable(tables[t])); }
+  var sel = ['.kp-scroll-x', '.tabrail'];
   for (var i = 0; i < sel.length; i++) {
     var list = document.querySelectorAll(sel[i]);
     for (var j = 0; j < list.length; j++) { kpArrowsFor(list[j]); }
